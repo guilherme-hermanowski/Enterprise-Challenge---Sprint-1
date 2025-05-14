@@ -56,7 +56,12 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 14.	AWS Step Functions;
 15.	Amazon CloudWatch;
 16.	SNS.
-    
+
+## 📁 Estrutura de pastas
+
+![Captura de tela 2025-05-14 205646](https://github.com/user-attachments/assets/b8ca6629-2493-4338-a6b6-65c57a923d91)
+
+
 
 ## 🔧 Funcionamento
 
@@ -73,9 +78,6 @@ O gerenciamento de todo esse processo de treinamento se dá através do AWS Step
 - Integração de Features: todos 
 
 
-## 📁 Estrutura de pastas
-
-Sem pastas
 
 
 ## 🗃 Histórico de lançamentos
