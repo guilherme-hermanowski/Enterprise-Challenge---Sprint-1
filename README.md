@@ -9,7 +9,7 @@ Enterprise Challenge - Sprint 1 - Reply
 <br>
 
 # Nome do projeto
-Cap 3 - Colheita de Dados e Insights - dados valiosos e maduros - Enterprise Challenge - Sprint 1 - Reply
+Cap 3 - Colheita de Dados e Insights - dados valiosos e maduros - Enterprise Challenge - Sprint 1
 
 ## Nome do grupo
 21
