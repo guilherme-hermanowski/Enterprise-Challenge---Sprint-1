@@ -30,6 +30,9 @@ Cap 3 - Colheita de Dados e Insights - dados valiosos e maduros - Enterprise Cha
 ## 📜 Descrição
 
 Introdução
+
+<br>
+
 Este projeto tem como principal objetivo de seu escopo o monitoramento e previsão de falhas em equipamentos de produção, assim otimizando a manutenção, reduzindo custos e aumentando a eficiência operacional. 
 Utilizando-se de sensores de temperatura, vibração, umidade e volume de produção, somado a uma arquitetura baseada em serviços AWS, é possível detectar falhas antes que elas ocorram, permitindo que alertas sejam gerados e o erro evitado antes de sua incidência. 
 
