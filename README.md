@@ -41,16 +41,21 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 - Com variado uso de ferramentas AWS e lingaugens voltadas a análise de dados, o programa seria composto da seguinte forma:
 
 1.	Sensores (ESP32);
-2.	AWS IoT Core;
-3.	Armazenamento de Dados;
-4.	Amazon S3;
-5.	Amazon RDS;
-6.	AWS Lake Formation;
-7.	AWS Lambda;
-8.	Amazon SageMaker;
-9.	AWS Step Functions;
-10.	Amazon CloudWatch;
-11.	SNS.
+2.	Python;
+3.	Pandas;
+4.	TensorFlow;
+5.	R
+6.	***acrescentar***
+7.	AWS IoT Core;
+8.	Armazenamento de Dados;
+9.	Amazon S3;
+10.	Amazon RDS;
+11.	AWS Lake Formation;
+12.	AWS Lambda;
+13.	Amazon SageMaker;
+14.	AWS Step Functions;
+15.	Amazon CloudWatch;
+16.	SNS.
     
 
 ## 🔧 Funcionamento
@@ -60,6 +65,12 @@ Com Amazon S3 e Amazon RDS os dados são armazenados no banco de dados, onde o A
 Isto feito e todos os dados devidamente armazenados, o serviço do AWS Lambda é acionado e verifica a existência de novos dados, para que, caso existam, seja iniciado o treinamento do modelo de machine learning via Amazon SageMaker.
 O gerenciamento de todo esse processo de treinamento se dá através do AWS Step Functions, enquanto CloudWatch e SNS enviam alertas caso algo dê errado ou o treinamento seja concluído.
 
+## 👨‍🎓 Divisão de responsabilidades:
+- Arquitetura (Pipeline e estrutura de features na AWS) : <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
+Coleta de dados: Jonathan e Guilherme
+Banco de Dados: <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
+Treinamento de IA: Matheus
+Integração de Features: todos 
 
 
 ## 📁 Estrutura de pastas
