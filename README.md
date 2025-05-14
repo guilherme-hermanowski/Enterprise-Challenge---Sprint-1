@@ -38,7 +38,7 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 
 ## 🔧 Componentes
--
+- Com variado uso de ferramentas AWS e lingaugens voltadas a análise de dados, o programa seria composto da seguinte forma:
 
 1.	Sensores (ESP32);
 2.	AWS IoT Core;
@@ -54,7 +54,6 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
     
 
 ## 🔧 Funcionamento
--
 
 O projeto se inicia com a recolhimento de dados pelos 4 sensores, onde cada um deles (controlados por um ESP32) coletam as informações de temperatura, umidade, vibração e volume de produção do ambiente. Após isso, as informações coletadas são enviadas para o AWS IoT Core via MQTT.
 Com Amazon S3 e Amazon RDS os dados são armazenados no banco de dados, onde o AWS Lake Formation organiza esses dados através da criação de um Data Lake para facilitar o gerenciamento e a análise. 
