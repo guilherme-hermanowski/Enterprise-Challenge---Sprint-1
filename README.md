@@ -67,10 +67,10 @@ O gerenciamento de todo esse processo de treinamento se dá através do AWS Step
 
 ## 👨‍🎓 Divisão de responsabilidades:
 - Arquitetura (Pipeline e estrutura de features na AWS) : <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
-Coleta de dados: Jonathan e Guilherme
-Banco de Dados: <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
-Treinamento de IA: Matheus
-Integração de Features: todos 
+- Coleta de dados: <a href="https://www.linkedin.com/company/inova-fusca">Jonathan Willian Luft </a> e <a href="https://www.linkedin.com/company/inova-fusca">Guilherme  Campos Hermanowski </a>
+- Banco de Dados: <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
+- Treinamento de IA: <a href="https://www.linkedin.com/company/inova-fusca"> Matheus Alboredo Soares</a> 
+- Integração de Features: todos 
 
 
 ## 📁 Estrutura de pastas
