@@ -18,7 +18,6 @@ Cap 3 - Colheita de Dados e Insights - dados valiosos e maduros - Enterprise Cha
 - <a href="https://www.linkedin.com/company/inova-fusca">Guilherme Campos Hermanowski </a>
 - <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
 - <a href="https://www.linkedin.com/company/inova-fusca"> Matheus Alboredo Soares</a> 
-- <a href="https://www.linkedin.com/company/inova-fusca"> </a> 
 - <a href="https://www.linkedin.com/company/inova-fusca">Jonathan Willian Luft </a>
 
 ## 👩‍🏫 Professores:
