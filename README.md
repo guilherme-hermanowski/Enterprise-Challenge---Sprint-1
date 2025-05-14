@@ -57,7 +57,7 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 15.	Amazon CloudWatch;
 16.	SNS.
 
-## 📁 Estrutura de pastas
+## 📁 Arquitetura e Pipeline
 
 ![Captura de tela 2025-05-14 205646](https://github.com/user-attachments/assets/b8ca6629-2493-4338-a6b6-65c57a923d91)
 
@@ -78,12 +78,6 @@ O gerenciamento de todo esse processo de treinamento se dá através do AWS Step
 - Integração de Features: todos 
 
 
-
-
-## 🗃 Histórico de lançamentos
-
-* 0.1.0 - 18/04/2024
-    *
 
 ## 📋 Licença
 
