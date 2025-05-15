@@ -12,7 +12,7 @@ Enterprise Challenge - Sprint 1 - Reply
 Cap 3 - Colheita de Dados e Insights - dados valiosos e maduros - Enterprise Challenge - Sprint 1
 
 ## Nome do grupo
-84
+39
 
 ## 👨‍🎓 Integrantes: 
 - <a href="https://www.linkedin.com/company/inova-fusca">Guilherme Campos Hermanowski </a>
