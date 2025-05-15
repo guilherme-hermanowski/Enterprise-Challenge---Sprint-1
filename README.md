@@ -42,57 +42,57 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 **AWS IoT Core:**
 
-•	***Definição:*** Permite conectar dispositivos físicos (como ESP32) à nuvem de forma segura, confiável e escalável.<br>
-•	***Linguagem:*** MQTT, HTTP, TLS (via certificados).<br>
-•	***Propósito:*** Receber os dados dos sensores do ambiente físico (temperatura, vibração, entre outras coletas) e encaminhá-los para o RDS.<br>
-•	***Funcionamento:*** O dispositivo publica mensagens para um tópico MQTT, o IoT Core aplica regras de roteamento para enviar esses dados diretamente para RDS.<br>
+  •	***Definição:*** Permite conectar dispositivos físicos (como ESP32) à nuvem de forma segura, confiável e escalável.<br>
+  •	***Linguagem:*** MQTT, HTTP, TLS (via certificados).<br>
+  •	***Propósito:*** Receber os dados dos sensores do ambiente físico (temperatura, vibração, entre outras coletas) e encaminhá-los para o RDS.<br>
+  •	***Funcionamento:*** O dispositivo publica mensagens para um tópico MQTT, o IoT Core aplica regras de roteamento para enviar esses dados diretamente para RDS.<br>
 
 **Amazon RDS:**
 
-•	***Definição:*** Banco de dados relacional, sem a necessidade de um EC2 e diminuindo atribuições como manutenção, configuração e atualizações de sistema Operacional, Redes ou Backup por exemplo.<br>
-•	***Linguagem:*** SQL<br>
-•	***Proposito:*** Armazenar os dados bruto do sensor, para garantir dados originais e também quaisquer logs adicionais pela equipe de IA (resultados de treinamentos por exemplo) ou estrutura relacional nova para atender escalabilidade da arquitetura de banco.<br>
+  •	***Definição:*** Banco de dados relacional, sem a necessidade de um EC2 e diminuindo atribuições como manutenção, configuração e atualizações de sistema Operacional, Redes ou Backup por exemplo.<br>
+  •	***Linguagem:*** SQL<br>
+  •	***Proposito:*** Armazenar os dados bruto do sensor, para garantir dados originais e também quaisquer logs adicionais pela equipe de IA (resultados de treinamentos por exemplo) ou estrutura relacional nova para atender escalabilidade da arquitetura de banco.<br>
 
 **Armazenamento S3 + Lake:**
 
-•	***Definição:*** Armazenamento (S3) em nuvem e governança e controle de acesso sobre o armazenament (Lake Formation).<br>
-•	***Integração:*** Através de replicação de dados do RDS e Lambda.<br>
-•	***Propósito:*** Ter um repositório sem impactar em ambiente produtivo (RDS) e também possibilitando uma futura fonte de dados para construção de Dashboards, além de servir de fonte de dados para a IA.<br>
-•	***Funcionamento:*** Assim que realizado um UPLOAD mapeado no S3, é diparado um gatilho para o Lambda acessar e dar inicio as etapas referentes aos dados para a IA.<br>
+  •	***Definição:*** Armazenamento (S3) em nuvem e governança e controle de acesso sobre o armazenament (Lake Formation).<br>
+  •	***Integração:*** Através de replicação de dados do RDS e Lambda.<br>
+  •	***Propósito:*** Ter um repositório sem impactar em ambiente produtivo (RDS) e também possibilitando uma futura fonte de dados para construção de Dashboards, além de servir de fonte de dados para a IA.<br>
+  •	***Funcionamento:*** Assim que realizado um UPLOAD mapeado no S3, é diparado um gatilho para o Lambda acessar e dar inicio as etapas referentes aos dados para a IA.<br>
 
 **Amazon Lambda:**
 
-•	***Definição:*** Permitir executar código em resposta a eventos.<br>
-•	***Linguagem:*** Python.<br>
-•	***Propósito:*** Realizar o pré processamento deles disparados pelo S3 e realizar a carga para o Amazon SageMaker, além também de servir para possível carga de dados no banco produtivo, referente a algum log a ser registrado no RDS.<br>
-•	***Funcionamento:*** Disparado pelo S3 ou para carga de dados no RDS.(Em resumo uma ferramenta da AWS para integração de fluxos).<br>
+  •	***Definição:*** Permitir executar código em resposta a eventos.<br>
+  •	***Linguagem:*** Python.<br>
+  •	***Propósito:*** Realizar o pré processamento deles disparados pelo S3 e realizar a carga para o Amazon SageMaker, além também de servir para possível carga de dados no banco produtivo, referente a algum log a ser registrado no RDS.<br>
+  •	***Funcionamento:*** Disparado pelo S3 ou para carga de dados no RDS.(Em resumo uma ferramenta da AWS para integração de fluxos).<br>
 
 **Amazon SageMaker:**
 
-•	***Definição:***  Plataforma de machine learning gerenciada para criar, treinar, implantar e monitorar modelos de aprendizado de máquina.<br>
-•	***Linguagem:*** TensorFlow, R, Pandas e Numpy.<br>
-•	***Integração:*** É acionado após o Lambda receber e fazer o pré processamento desses dados do S3.<br>
-•	***Propósito:*** Processar os dados recebidos e realizar inferência com base nos modelos treinados, como detectar os padrões dos logs recebidos do sensor ESP32 e poder gerar uma análise preditiva.<br>
-•	***Funcionamento:*** Recebe os dados do Lambda, executa a inferência com o modelo implantado e retorna a resposta, podendo registrar algum resultado no RDS (através do Lambda), ou disparando notificações para os usuários responsáveis sobre o equipamento monitorado em especifico daquele sensor.<br>
+  •	***Definição:***  Plataforma de machine learning gerenciada para criar, treinar, implantar e monitorar modelos de aprendizado de máquina.<br>
+  •	***Linguagem:*** TensorFlow, R, Pandas e Numpy.<br>
+  •	***Integração:*** É acionado após o Lambda receber e fazer o pré processamento desses dados do S3.<br>
+  •	***Propósito:*** Processar os dados recebidos e realizar inferência com base nos modelos treinados, como detectar os padrões dos logs recebidos do sensor ESP32 e poder gerar uma análise preditiva.<br>
+  •	***Funcionamento:*** Recebe os dados do Lambda, executa a inferência com o modelo implantado e retorna a resposta, podendo registrar algum resultado no RDS (através do Lambda), ou disparando notificações para os usuários responsáveis sobre o equipamento monitorado em especifico daquele sensor.<br>
 
 **AWS Step Functions:**
 
-•	***Definição:*** Coordenar a execução sequencial e condicional de vários serviços, para fluxos mais longos ou lógica mais complexa.<br>
-•	***Linguagem:*** Podemos criar o Fluxo visualmente pelo console da AWS ou por exemplo chamar uma função Lambda escrita em Python.<br>
-•	***Propósito:*** Organizar fluxos complexos em etapas visuais com controle de erro, espera, decisão e paralelismo.<br>
+  •	***Definição:*** Coordenar a execução sequencial e condicional de vários serviços, para fluxos mais longos ou lógica mais complexa.<br>
+  •	***Linguagem:*** Podemos criar o Fluxo visualmente pelo console da AWS ou por exemplo chamar uma função Lambda escrita em Python.<br>
+  •	***Propósito:*** Organizar fluxos complexos em etapas visuais com controle de erro, espera, decisão e paralelismo.<br>
 
 **Amazon CloudWatch:**
 
-•	***Definição:*** Monitoramento e observação de métricas, logs e alarmes de recursos da AWS.<br>
-•	***Integração:*** Coleta logs e métricas do Lambda, monitora uso do SageMaker, e pode disparar  SNS ou outra função Lambda com base em condições.<br>
-•	***Propósito:*** Acompanhar o comportamento do sistema e criar automações baseadas em falhas ou condições predefinidas.<br>
-•	***Funcionamento:*** Analisa as métricas ou logs, acompanha os processos e disparar alertas via SNS ou outras funções de recursos.<br>
+  •	***Definição:*** Monitoramento e observação de métricas, logs e alarmes de recursos da AWS.<br>
+  •	***Integração:*** Coleta logs e métricas do Lambda, monitora uso do SageMaker, e pode disparar  SNS ou outra função Lambda com base em condições.<br>
+  •	***Propósito:*** Acompanhar o comportamento do sistema e criar automações baseadas em falhas ou condições predefinidas.<br>
+  •	***Funcionamento:*** Analisa as métricas ou logs, acompanha os processos e disparar alertas via SNS ou outras funções de recursos.<br>
 
 **Amazon SNS (Simple Notification Service):**
 
-•	***Definição:*** Envio de alertas e notificações por e-mail, SMS ou outras aplicações.<br>
-•	***Propósito :*** Integrado com o Lambda ou diretamente com CloudWatch. Pode ser acionado com base nos resultados da IA, pela observação do CloudWatch em resposta a um evento, no nosso caso o acionamento em decorrência da identificação de problemas pela análise preditiva da IA e notificar  o responsável técnico pelo tipo de equipamento coletado pelo sensor que acusou o possível problema antes de ocorrer a parada em produção.<br>
-•	***Funcionamento:*** Se a inferência do SageMaker indicar uma condição anormal, o Lambda ou Step Function publica uma mensagem no SNS que é entregue ao responsável via email, sms ou por alguma aplicação.<br>
+  •	***Definição:*** Envio de alertas e notificações por e-mail, SMS ou outras aplicações.<br>
+  •	***Propósito :*** Integrado com o Lambda ou diretamente com CloudWatch. Pode ser acionado com base nos resultados da IA, pela observação do CloudWatch em resposta a um evento, no nosso caso o acionamento em decorrência da identificação de problemas pela análise preditiva da IA e notificar  o responsável técnico pelo tipo de equipamento coletado pelo sensor que acusou o possível problema antes de ocorrer a parada em produção.<br>
+  •	***Funcionamento:*** Se a inferência do SageMaker indicar uma condição anormal, o Lambda ou Step Function publica uma mensagem no SNS que é entregue ao responsável via email, sms ou por alguma aplicação.<br>
 
 
 ## 📁 Arquitetura e Pipeline
