@@ -103,7 +103,7 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 ## 🔧 Funcionamento
 
-O sistema utiliza uma arquitetura de monitoramento inteligente na AWS, com integração entre dispositivos físicos, banco de dados, machine learning e notificações automáticas. O ESP32 envia dados de sensores (como temperatura e vibração) via MQTT para o AWS IoT Core, com comunicação segura usando TLS e autenticação por certificados. Esses dados são roteados diretamente para o Amazon RDS, um banco de dados relacional gerenciado, onde são armazenados utilizando SQL.
+O sistema utiliza uma arquitetura de monitoramento inteligente na AWS, fazendo integração entre dispositivos físicos (sensores), banco de dados, machine learning e notificações automáticas. O ESP32 envia dados de sensores (volume de produção, temperatura, umidade e vibração) através de MQTT para o AWS IoT Core, com comunicação segura usando TLS e autenticação por certificados. Esses dados são roteados diretamente para o Amazon RDS, um banco de dados relacional gerenciado, onde são armazenados utilizando SQL.
 
 Os dados do RDS são replicados para o Amazon S3 com controle de acesso via Lake Formation, permitindo análises futuras e integrando com funções AWS Lambda escritas em Python. Nessas funções Lambda são utilizadas bibliotecas como pandas para tratamento de dados, e boto3 para interação com os serviços da AWS. Quando um novo dado chega ao S3, um gatilho aciona o Lambda para pré-processar e encaminhar os dados ao Amazon SageMaker.
 
