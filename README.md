@@ -81,14 +81,14 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 •	Linguagem: Podemos criar o Fluxo visualmente pelo console da AWS ou por exemplo chamar uma função Lambda escrita em Python.
 •	Propósito: Organizar fluxos complexos em etapas visuais com controle de erro, espera, decisão e paralelismo.
 </p>
-***Amazon CloudWatch:***
+Amazon CloudWatch:
 </p>
 •	Definição: Monitoramento e observação de métricas, logs e alarmes de recursos da AWS.
 •	Integração: Coleta logs e métricas do Lambda, monitora uso do SageMaker, e pode disparar  SNS ou outra função Lambda com base em condições.
 •	Propósito: Acompanhar o comportamento do sistema e criar automações baseadas em falhas ou condições predefinidas.
 •	Funcionamento: Analisa as métricas ou logs, acompanha os processos e disparar alertas via SNS ou outras funções de recursos.
 </p>
-***Amazon SNS (Simple Notification Service):***
+__Amazon SNS (Simple Notification Service):__
 </p>
 •	Definição: Envio de alertas e notificações por e-mail, SMS ou outras aplicações
 •	Propósito : Integrado com o Lambda ou diretamente com CloudWatch. Pode ser acionado com base nos resultados da IA, pela observação do CloudWatch em resposta a um evento, no nosso caso o acionamento em decorrência da identificação de problemas pela análise preditiva da IA e notificar  o responsável técnico pelo tipo de equipamento coletado pelo sensor que acusou o possível problema antes de ocorrer a parada em produção.
