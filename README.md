@@ -103,10 +103,15 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 ## 🔧 Funcionamento
 
-O projeto se inicia com a recolhimento de dados pelos 4 sensores, onde cada um deles (controlados por um ESP32) coletam as informações de temperatura, umidade, vibração e volume de produção do ambiente. Após isso, as informações coletadas são enviadas para o AWS IoT Core via MQTT.
-Com Amazon S3 e Amazon RDS os dados são armazenados no banco de dados, onde o AWS Lake Formation organiza esses dados através da criação de um Data Lake para facilitar o gerenciamento e a análise. 
-Isto feito e todos os dados devidamente armazenados, o serviço do AWS Lambda é acionado e verifica a existência de novos dados, para que, caso existam, seja iniciado o treinamento do modelo de machine learning via Amazon SageMaker.
-O gerenciamento de todo esse processo de treinamento se dá através do AWS Step Functions, enquanto CloudWatch e SNS enviam alertas caso algo dê errado ou o treinamento seja concluído.
+O sistema utiliza uma arquitetura de monitoramento inteligente na AWS, com integração entre dispositivos físicos, banco de dados, machine learning e notificações automáticas. O ESP32 envia dados de sensores (como temperatura e vibração) via MQTT para o AWS IoT Core, com comunicação segura usando TLS e autenticação por certificados. Esses dados são roteados diretamente para o Amazon RDS, um banco de dados relacional gerenciado, onde são armazenados utilizando SQL.
+
+Os dados do RDS são replicados para o Amazon S3 com controle de acesso via Lake Formation, permitindo análises futuras e integrando com funções AWS Lambda escritas em Python. Nessas funções Lambda são utilizadas bibliotecas como pandas para tratamento de dados, e boto3 para interação com os serviços da AWS. Quando um novo dado chega ao S3, um gatilho aciona o Lambda para pré-processar e encaminhar os dados ao Amazon SageMaker.
+
+O SageMaker, também operando em Python, utiliza bibliotecas como TensorFlow, scikit-learn, pandas e numpy para treinar e executar modelos de machine learning. Ele realiza inferência sobre os dados do sensor e detecta padrões que possam indicar falhas iminentes. Os resultados podem ser salvos no RDS ou repassados para outras funções Lambda.
+
+A coordenação de todos esses fluxos é feita com AWS Step Functions, onde os fluxos são definidos visualmente ou com código em JSON, orquestrando chamadas de funções Lambda e decisões baseadas em resultados.
+
+Para monitoramento, o Amazon CloudWatch coleta logs e métricas das funções Lambda e do SageMaker, permitindo a criação de alarmes automatizados. Caso uma anomalia seja detectada, CloudWatch pode acionar o Amazon SNS, que envia notificações por e-mail ou SMS ao responsável técnico, garantindo ação preventiva antes de falhas críticas.
 
 ## 👨‍🎓 Divisão de responsabilidades:
 - Arquitetura (Pipeline e estrutura de features na AWS) : <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
