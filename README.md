@@ -104,15 +104,15 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 ## 🔧 Funcionamento
 
-O sistema utiliza uma arquitetura de monitoramento inteligente na AWS, fazendo integração entre dispositivos físicos (sensores), banco de dados, machine learning e notificações automáticas. O ESP32 envia dados de sensores (volume de produção, temperatura, umidade e vibração) através de MQTT para o AWS IoT Core, com comunicação segura usando TLS e autenticação por certificados. Esses dados são roteados diretamente para o Amazon RDS, um banco de dados relacional gerenciado, onde são armazenados utilizando SQL.
+O sistema utiliza uma arquitetura de monitoramento inteligente na AWS, integrando sensores físicos, banco de dados, machine learning e notificações automatizadas. O ESP32 envia dados de sensores (volume de produção, temperatura, umidade e vibração) via MQTT para o AWS IoT Core, com comunicação segura por TLS e autenticação por certificados. Esses dados são roteados para uma função AWS Lambda, que grava as informações no Amazon RDS, um banco relacional gerenciado e seguro.
 
-Os dados do RDS são replicados para o Amazon S3 com controle de acesso via Lake Formation, permitindo análises futuras e integrando com funções AWS Lambda escritas em Python. Nessas funções Lambda são utilizadas bibliotecas como pandas para tratamento de dados, e boto3 para interação com os serviços da AWS. Quando um novo dado chega ao S3, um gatilho aciona o Lambda para pré-processar e encaminhar os dados ao Amazon SageMaker.
+Para viabilizar análises futuras e separar a carga operacional da base produtiva, os dados do RDS são exportados para o Amazon S3. Esse armazenamento forma o Data Lake, com controle de acesso gerenciado pelo AWS Lake Formation. A chegada de novos dados no S3 aciona automaticamente uma função AWS Lambda (via gatilho), que faz o pré-processamento utilizando Python e bibliotecas como pandas e boto3, e em seguida envia os dados ao Amazon SageMaker.
 
-O SageMaker, também operando em Python, utiliza bibliotecas como TensorFlow, scikit-learn, pandas e numpy para treinar e executar modelos de machine learning. Ele realiza inferência sobre os dados do sensor e detecta padrões que possam indicar falhas iminentes. Os resultados podem ser salvos no RDS ou repassados para outras funções Lambda.
+O Amazon SageMaker realiza a inferência com modelos desenvolvidos em Python, utilizando bibliotecas como TensorFlow, scikit-learn, numpy e pandas, para detectar padrões e antecipar possíveis falhas operacionais. Os resultados podem ser armazenados no RDS ou encaminhados a outras funções Lambda para tomada de decisão.
 
-A coordenação de todos esses fluxos é feita com AWS Step Functions, onde os fluxos são definidos visualmente ou com código em JSON, orquestrando chamadas de funções Lambda e decisões baseadas em resultados.
+Workflows mais complexos e decisões condicionais são coordenados por AWS Step Functions, que orquestram a sequência de chamadas e ações de forma estruturada.
 
-Para monitoramento, o Amazon CloudWatch coleta logs e métricas das funções Lambda e do SageMaker, permitindo a criação de alarmes automatizados. Caso uma anomalia seja detectada, CloudWatch pode acionar o Amazon SNS, que envia notificações por e-mail ou SMS ao responsável técnico, garantindo ação preventiva antes de falhas críticas.
+Para observabilidade, o Amazon CloudWatch coleta métricas e logs de todos os serviços envolvidos, como Lambda, SageMaker e Step Functions. Alarmes podem ser configurados para detectar falhas, tempos de resposta anormais ou comportamentos críticos, acionando o Amazon SNS para notificar os responsáveis via e-mail, SMS ou integração com sistemas externos.
 
 ## 👨‍🎓 Divisão de responsabilidades:
 - Arquitetura (Pipeline e estrutura de features na AWS) : <a href="https://www.linkedin.com/company/inova-fusca">Gabriel Viel </a>
