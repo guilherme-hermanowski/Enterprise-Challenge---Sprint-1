@@ -97,7 +97,8 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 ## 📁 Arquitetura e Pipeline
 
-![Captura de tela 2025-05-14 205646](https://github.com/user-attachments/assets/b8ca6629-2493-4338-a6b6-65c57a923d91)
+![Pipeline AWS](https://github.com/user-attachments/assets/5eab299f-b2ad-4ea4-81e9-da8b4054551b)
+
 
 
 
