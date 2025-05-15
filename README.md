@@ -41,31 +41,32 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 **Definição das tecnologias que serão utilizadas (linguagens de programação, bibliotecas de IA, serviços de nuvem, banco de dados etc.):**
 </p>
 ***AWS IoT Core:***
+<p/>
 •	Definição: Permite conectar dispositivos físicos (como ESP32) à nuvem de forma segura, confiável e escalável.
 •	Linguagem: MQTT, HTTP, TLS (via certificados).
 •	Propósito: Receber os dados dos sensores do ambiente físico (temperatura, vibração, entre outras coletas) e encaminhá-los para o RDS.
 •	Funcionamento: O dispositivo publica mensagens para um tópico MQTT, o IoT Core aplica regras de roteamento para enviar esses dados diretamente para RDS.
-
+</p>
 ***Amazon RDS:***
 </p>
 •	Definição: Banco de dados relacional, sem a necessidade de um EC2 e diminuindo atribuições como manutenção, configuração e atualizações de sistema Operacional, Redes ou Backup por exemplo.
 •	Linguagem: SQL
 •	Proposito: Armazenar os dados bruto do sensor, para garantir dados originais e também quaisquer logs adicionais pela equipe de IA (resultados de treinamentos por exemplo) ou estrutura relacional nova para atender escalabilidade da arquitetura de banco.
-
+</p>
 ***Armazenamento S3 + Lake:***
 </p>
 •	Definição: Armazenamento (S3) em nuvem e governança e controle de acesso sobre o armazenament (Lake Formation)
 •	Integração: Através de replicação de dados do RDS e Lambda
 •	Propósito: Ter um repositório sem impactar em ambiente produtivo (RDS) e também possibilitando uma futura fonte de dados para construção de Dashboards, além de servir de fonte de dados para a IA
 •	Funcionamento: Assim que realizado um UPLOAD mapeado no S3, é diparado um gatilho para o Lambda acessar e dar inicio as etapas referentes aos dados para a IA.
-
+</p>
 ***Amazon Lambda:***
 </p>
 •	Definição: Permitir executar código em resposta a eventos
 •	Linguagem: Python
 •	Propósito: Realizar o pré processamento deles disparados pelo S3 e realizar a carga para o Amazon SageMaker, além também de servir para possível carga de dados no banco produtivo, referente a algum log a ser registrado no RDS.
 •	Funcionamento: Disparado pelo S3 ou para carga de dados no RDS.(Em resumo uma ferramenta da AWS para integração de fluxos)
-
+</p>
 ***Amazon SageMaker:***
 </p>
 •	Definição:  Plataforma de machine learning gerenciada para criar, treinar, implantar e monitorar modelos de aprendizado de máquina.
@@ -73,20 +74,20 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 •	Integração: É acionado após o Lambda receber e fazer o pré processamento desses dados do S3.
 •	Propósito: Processar os dados recebidos e realizar inferência com base nos modelos treinados, como detectar os padrões dos logs recebidos do sensor ESP32 e poder gerar uma análise preditiva.
 •	Funcionamento: Recebe os dados do Lambda, executa a inferência com o modelo implantado e retorna a resposta, podendo registrar algum resultado no RDS (através do Lambda), ou disparando notificações para os usuários responsáveis sobre o equipamento monitorado em especifico daquele sensor.
-
+</p>
 ***AWS Step Functions:***
 </p>
 •	Definição: Coordenar a execução sequencial e condicional de vários serviços, para fluxos mais longos ou lógica mais complexa
 •	Linguagem: Podemos criar o Fluxo visualmente pelo console da AWS ou por exemplo chamar uma função Lambda escrita em Python.
 •	Propósito: Organizar fluxos complexos em etapas visuais com controle de erro, espera, decisão e paralelismo.
-
+</p>
 ***Amazon CloudWatch:***
 </p>
 •	Definição: Monitoramento e observação de métricas, logs e alarmes de recursos da AWS.
 •	Integração: Coleta logs e métricas do Lambda, monitora uso do SageMaker, e pode disparar  SNS ou outra função Lambda com base em condições.
 •	Propósito: Acompanhar o comportamento do sistema e criar automações baseadas em falhas ou condições predefinidas.
 •	Funcionamento: Analisa as métricas ou logs, acompanha os processos e disparar alertas via SNS ou outras funções de recursos.
-
+</p>
 ***Amazon SNS (Simple Notification Service):***
 </p>
 •	Definição: Envio de alertas e notificações por e-mail, SMS ou outras aplicações
