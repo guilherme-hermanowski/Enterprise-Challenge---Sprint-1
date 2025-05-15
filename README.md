@@ -39,7 +39,7 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
 
 ## 🔧 Componentes
 **Definição das tecnologias que serão utilizadas (linguagens de programação, bibliotecas de IA, serviços de nuvem, banco de dados etc.):**
-
+```
 **AWS IoT Core:**
 
   •	***Definição:*** Permite conectar dispositivos físicos (como ESP32) à nuvem de forma segura, confiável e escalável.<br>
@@ -93,7 +93,7 @@ Com foco no monitoramento e previsão de falhas em equipamentos de produção, u
   •	***Definição:*** Envio de alertas e notificações por e-mail, SMS ou outras aplicações.<br>
   •	***Propósito :*** Integrado com o Lambda ou diretamente com CloudWatch. Pode ser acionado com base nos resultados da IA, pela observação do CloudWatch em resposta a um evento, no nosso caso o acionamento em decorrência da identificação de problemas pela análise preditiva da IA e notificar  o responsável técnico pelo tipo de equipamento coletado pelo sensor que acusou o possível problema antes de ocorrer a parada em produção.<br>
   •	***Funcionamento:*** Se a inferência do SageMaker indicar uma condição anormal, o Lambda ou Step Function publica uma mensagem no SNS que é entregue ao responsável via email, sms ou por alguma aplicação.<br>
-
+```
 
 ## 📁 Arquitetura e Pipeline
 
